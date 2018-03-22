@@ -3,7 +3,8 @@
   "version": "1.0.2",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "babel src -d lib"
   },
   "author": "Konstantin Shkut <konstantin.shkut@gmail.com> (http://rationalappdev.com)",
   "license": "MIT",
@@ -24,6 +25,7 @@
     "react-native-vector-icons": "^4.0.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-jest": "^19.0.0",
     "babel-preset-react-native": "^1.9.1",
     "jest": "^19.0.2",
