@@ -31,6 +31,8 @@ export default class Drawer extends Component {
     headerHeight: PropTypes.number,
     // Height of the visible teaser area at the bottom of the screen
     teaserHeight: PropTypes.number,
+    // Event fired after the drawer has been opened
+    onOpened: PropTypes.func,
   };
 
   // Set default prop values
@@ -39,6 +41,7 @@ export default class Drawer extends Component {
     header: 'Messages',
     headerHeight: 70,
     teaserHeight: 75,
+    onOpened: () => {},
   };
 
   // Define state
@@ -301,7 +304,9 @@ export default class Drawer extends Component {
       Animated.timing(this._animatedPosition, {
         toValue: this.config.position.end,
         duration: 400,
-      }).start();
+      }).start(() => {
+        this.props.onOpened();
+      });
     });
   };
 
