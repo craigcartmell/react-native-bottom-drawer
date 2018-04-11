@@ -33,6 +33,8 @@ export default class Drawer extends Component {
     teaserHeight: PropTypes.number,
     // Event fired after the drawer has been opened
     onOpened: PropTypes.func,
+    // Event fired after the drawer has been closed
+    onClosed: PropTypes.func,
   };
 
   // Set default prop values
@@ -42,6 +44,7 @@ export default class Drawer extends Component {
     headerHeight: 70,
     teaserHeight: 75,
     onOpened: () => {},
+    onClosed: () => {},
   };
 
   // Define state
@@ -316,9 +319,13 @@ export default class Drawer extends Component {
     Animated.timing(this._animatedPosition, {
       toValue: this.config.position.start,
       duration: 400,
-    }).start(() => this.setState({
-      open: false,
-    }));
+    }).start(() => {
+      this.setState({
+        open: false,
+      }, () => {
+        this.props.onClosed();
+      })
+    });
   };
 
   // Toggle window state between opened and closed
